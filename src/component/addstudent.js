@@ -120,7 +120,8 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                             </div>
 
                             <div className="mt-6">
-                                <button onClick={() => {
+                                <button onClick={(e) => {
+                                    e.preventDefault()
                                     if (validateForm()) {
                                         functioncall()
                                     }
@@ -133,7 +134,10 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                 <button
                                     className="w-full px-4 py-2 tracking-wide transition-colors duration-200 transform  rounded-md  focus:outline-none focus:bg-yellow-600"
                                     type="button"
-                                    onClick={() => setShowModal(false)}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        setShowModal(false)
+                                    }}
                                 >
                                     Close
                                 </button></div>
