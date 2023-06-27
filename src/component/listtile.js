@@ -4,10 +4,8 @@ import axios from "axios";
 
 function Listtile({ name, email, phone, enroll, admission, setval, val, onupdate, userid, isUpdate, updateuser, create }) {
 
-    console.log(email)
     const deletestudent = () => {
-        console.log("delete called")
-        axios.delete("user/" + email).then(setval(val + 1))
+        axios.delete("user/" + email).then(setval(!val))
     }
     return (
         <tbody class="divide-y divide-gray-100 border-t border-gray-100" key={userid}>

@@ -1,28 +1,30 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { SigninContext } from "../../constants/signinContext";
+
 function Signin() {
     const [email, setemail] = useState("")
     const [pass, setpass] = useState("")
     const navigate = useNavigate()
-
+    const { setrefresh, refresh, apptoken, setapptoken } = useContext(SigninContext);
     function signinval() {
-        console.log("before");
         if (validateForm())
-            console.log("after");
-        axios.post('auth/login', {
-            "email": email,
-            "password": pass
-        }).then(() => {
-            alert("Signed in sucesss")
-            navigate('/home')
+            axios.post('auth/login', {
+                "email": email,
+                "password": pass
+            }).then((res) => {
+                setapptoken(res.data.accessToken)
+                setrefresh(res.data.refreshToken)
+                localStorage.setItem('token', res.data.accessToken);
+                navigate('/home')
 
-        }
-        ).catch(error => {
-            console.error(error);
-            alert("Signed in failed")
+            }
+            ).catch(error => {
+                console.log(error);
+                alert(error)
 
-        });
+            });
 
     }
     function validateForm() {
@@ -52,7 +54,7 @@ function Signin() {
     }
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-yellow-600 to-yellow-500">
-            <div className="w-[570] p-10 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
+            <div className="w-[570] p-4 m-auto bg-white rounded-md shadow-md lg:max-w-xl" style={{ width: "500px" }}>
                 <h1 className="text-3xl font-semibold text-center text-balck-700 ">
                     Learning Portal
                 </h1>
@@ -102,7 +104,7 @@ function Signin() {
                     </div>
                 </form>
 
-                <p className="mt-8 mb-8 text-xs font-light text-center text-gray-700" onClick={() => signinval()}>
+                <p className="mt-8 mb-4 text-xs font-light text-center text-gray-700" >
                     {" "}
                     Forgot Password?{" "}
                     <a
@@ -110,6 +112,15 @@ function Signin() {
                         className="font-medium text-yellow-600 hover:underline"
                     >
                         Reset Password
+                    </a>
+                </p>
+                <p className="mb-8 text-xs font-light text-center text-gray-700" >
+                    {" "}
+                    New Uesr?{" "}
+                    <a href="/signup"
+                        className="font-medium text-yellow-600 hover:underline"
+                    >
+                        SignUp
                     </a>
                 </p>
             </div>

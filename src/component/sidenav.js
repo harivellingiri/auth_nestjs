@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+
 import Tiles from "../component/tiles";
-import Topnav from "./topnav";
 import { Link } from "react-router-dom";
 function SideNav({ selected }) {
-    console.log("sel" + (selected === "1"))
     return (<aside className="fixed   m-7 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 px-5 py-8 overflow-y-auto bg-yellow-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
         <img
             src="https://tecdn.b-cdn.net/img/new/avatars/2.webp"
@@ -41,6 +39,7 @@ function SideNav({ selected }) {
         <Link to={"/yet/6"}> <Tiles name={selected === "6" ? true : false} title={"Settings"} svg={
             "M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"
         } /></Link><br></br>
+
         <div class="flex flex-col justify-between flex-1 mt-6">
             <nav class="-mx-3 space-y-6 ">
                 <div class="space-y-3 ">

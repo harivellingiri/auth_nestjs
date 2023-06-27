@@ -15,15 +15,8 @@ function List() {
     const [admission, setadmission] = useState("")
     const [showModal, setShowModal] = React.useState(false);
     const [isUpdate, setisUpdate] = React.useState(false);
-    const [val, setval] = React.useState(0);
-    function remove() {
+    const [val, setval] = React.useState(false);
 
-        const index = allstudent.indexOf(allstudent.email === updateuserid);
-        if (index > -1) {
-            allstudent.splice(index, 1);
-        }
-        return allstudent;
-    }
 
     // const remove = () => {
 
@@ -54,7 +47,13 @@ function List() {
             "admission": admission
 
         }).then(() => {
-            setval(val + 1)
+            setShowModal(false)
+            setval(!val)
+            setname("")
+            setemail("")
+            setphone("")
+            setadmission("")
+            setenroll("")
             // remove()
             // if (name !== "") {
             //     setallStudent([...allstudent, {
@@ -84,7 +83,7 @@ function List() {
             "admission": admission
 
         }).then(() => {
-            console.log("sa" + (name !== ""));
+
             if (name !== "") {
                 setallStudent([...allstudent, {
                     "userId": email,
@@ -95,6 +94,12 @@ function List() {
                     "admission": admission
                 }])
             }
+            setShowModal(false)
+            setname("")
+            setemail("")
+            setphone("")
+            setadmission("")
+            setenroll("")
         }
         ).catch(error => {
             console.error(error);

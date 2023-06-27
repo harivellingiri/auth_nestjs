@@ -7,7 +7,6 @@ import {
 export default function YetToDevelop() {
 
     const { id } = useParams();
-    console.log(id)
     return (
         <body>
             <SideNav selected={id} />

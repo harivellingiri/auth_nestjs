@@ -114,7 +114,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                     type="date"
                                     onChange={e => setadmission(admission = e.target.value)}
                                     placeholder="Enter The Date Of Admission "
-                                    value={Date.now}
+                                    //value={Date.now}
                                     className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 />
                             </div>
@@ -124,6 +124,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                     e.preventDefault()
                                     if (validateForm()) {
                                         functioncall()
+
                                     }
                                 }}
                                     className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-500 rounded-md hover:bg-yellow-400 focus:outline-none focus:bg-yellow-600">

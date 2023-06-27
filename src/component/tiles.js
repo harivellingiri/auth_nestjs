@@ -1,14 +1,18 @@
-function Tiles({ title, svg, name }) {
+
+
+function Tiles({ title, svg, name, ontab }) {
+
     var divstyle = "";
-    console.log("name" + name)
     if (name) {
+
         divstyle = "bg-yellow-400 rounded-md"
-    } else {
+    }
+    else {
         divstyle = ""
     }
-    console.log(divstyle)
     return (
-        <div className={divstyle}>
+        <div className={divstyle}
+        >
             <a class="flex items-center px-3 py-2 text-black transition-colors duration-300 transform rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 " href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d=

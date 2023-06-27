@@ -9,23 +9,22 @@ function SignUp() {
 
     function signupval() {
         if (validateForm())
-            console.log("ins");
-        axios.post('auth/register', {
-            "email": email,
-            "password": pass,
-            "name": name
-        }).then(() => {
-            alert("SignedUp sucesss")
-            // return <Navigate replace to={'/home'} />
-            navigate('/signin')
+            axios.post('auth/register', {
+                "email": email,
+                "password": pass,
+                "name": name
+            }).then(() => {
+                alert("SignedUp sucesss")
+                // return <Navigate replace to={'/home'} />
+                navigate('/signin')
 
-        }
-        ).catch(error => {
-            console.error(error);
-            alert("SignedUp failed")
-            // return <Navigate replace to={'/signin'} />
+            }
+            ).catch(error => {
+                console.error(error);
+                alert("SignedUp failed")
+                // return <Navigate replace to={'/signin'} />
 
-        });
+            });
 
     }
     function validateForm() {
@@ -119,8 +118,16 @@ function SignUp() {
                         </button>
                     </div>
                 </form>
-
-
+                <p className="mt-8 mb-8 text-xs font-light text-center text-gray-700" >
+                    {" "}
+                    Not A New Uesr?{" "}
+                    <a
+                        href="signin"
+                        className="font-medium text-yellow-600 hover:underline"
+                    >
+                        SignIn
+                    </a>
+                </p>
             </div>
         </div>
     );
