@@ -1,5 +1,5 @@
 
-function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, enroll, admission, setname, setemail, setphone, setenroll, setadmission }) {
+function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, enroll, admission, setname, setemail, setphone, setenroll, setadmission, updateuserid }) {
 
     function validateForm() {
 
@@ -69,8 +69,8 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                 </label>
                                 <input
                                     type="text"
-                                    //value={isUpdate ? userid : ""}
-                                    //disabled={isUpdate}
+                                    value={isUpdate ? updateuserid : ""}
+                                    disabled={isUpdate}
                                     onChange={e => setemail(email = e.target.value)}
                                     placeholder="Enter The Student Email"
                                     className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"

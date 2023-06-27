@@ -148,7 +148,7 @@ function List() {
 
                         </table></div></div>
             </div>
-            {showModal ? <Addstudent name={name} email={email} admission={admission} phone={phone} setadmission={setadmission} setemail={setemail} setphone={setphone} setenroll={setenroll} setname={setname} functioncall={isUpdate ? updateStudent : createStudent} setShowModal={setShowModal} create={setallStudent} allstudent={allstudent} isUpdate={isUpdate} userid={isUpdate ? updateuserid : null} /> : null}
+            {showModal ? <Addstudent updateuserid={isUpdate ? updateuserid : ""} name={name} email={email} admission={admission} phone={phone} setadmission={setadmission} setemail={setemail} setphone={setphone} setenroll={setenroll} setname={setname} functioncall={isUpdate ? updateStudent : createStudent} setShowModal={setShowModal} create={setallStudent} allstudent={allstudent} isUpdate={isUpdate} userid={isUpdate ? updateuserid : null} /> : null}
         </body>
     );
 }
