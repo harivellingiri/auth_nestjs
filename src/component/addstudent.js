@@ -1,5 +1,6 @@
 
-function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, enroll, admission, setname, setemail, setphone, setenroll, setadmission, updateuserid }) {
+function Addstudent({ upval, setShowModal,
+    setisUpdate, isUpdate, functioncall, name, email, phone, enroll, admission, setname, setemail, setphone, setenroll, setadmission, updateuserid }) {
 
     function validateForm() {
 
@@ -7,7 +8,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
             "^[A-Za-z]+[A-Za-z ]*$"
         );
         const emailval = RegExp(
-            "[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
+            "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$"
         );
         function validate(text, pattern) {
             return pattern.test(text);
@@ -55,6 +56,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                 <input
                                     type="name"
 
+                                    defaultValue={isUpdate ? upval.name : ""}
                                     onChange={e => setname(name = e.target.value)}
                                     placeholder="Enter The Student Name"
                                     className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -69,7 +71,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                 </label>
                                 <input
                                     type="text"
-                                    value={isUpdate ? updateuserid : ""}
+                                    defaultValue={isUpdate ? updateuserid : ""}
                                     disabled={isUpdate}
                                     onChange={e => setemail(email = e.target.value)}
                                     placeholder="Enter The Student Email"
@@ -84,7 +86,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                 </label>
                                 <input
                                     type="number"
-
+                                    defaultValue={isUpdate ? upval.phone : ""}
                                     onChange={e => setphone(phone = e.target.value)}
                                     placeholder="Enter The Student Phone Number"
                                     className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -98,6 +100,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                 </label>
                                 <input
                                     type="text"
+                                    defaultValue={isUpdate ? upval.enroll : ""}
                                     onChange={e => setenroll(enroll = e.target.value)}
                                     placeholder="Enter The Student Enroll Number"
                                     className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -112,6 +115,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
 
                                 <input
                                     type="date"
+                                    defaultValue={isUpdate ? upval.admission : ""}
                                     onChange={e => setadmission(admission = e.target.value)}
                                     placeholder="Enter The Date Of Admission "
                                     //value={Date.now}
@@ -138,6 +142,7 @@ function Addstudent({ setShowModal, isUpdate, functioncall, name, email, phone, 
                                     onClick={(e) => {
                                         e.preventDefault()
                                         setShowModal(false)
+                                        setisUpdate(false)
                                     }}
                                 >
                                     Close

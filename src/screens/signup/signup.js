@@ -30,16 +30,22 @@ function SignUp() {
     function validateForm() {
 
         const emailval = RegExp(
-            "[a-z0-9]+@[a-z]+.[a-z]{2,3}"
+            "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$"
         );
         const pattern = RegExp(
             "^[A-Za-z]+[A-Za-z ]*$"
         );
+
+        const passpatten = RegExp("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
         const passval = RegExp("^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$");
         function validate(text, pattern) {
             return pattern.test(text);
         }
 
+        // if (!validate(pass, passpatten)) {
+        //     alert(' Password is invalid ' + pass)
+        //     return
+        // }
         if (!validate(name, pattern)) {
             alert(' Name is invalid')
             return

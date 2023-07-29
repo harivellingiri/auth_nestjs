@@ -1,12 +1,14 @@
 import SideNav from "../../component/sidenav";
 import Listtile from "../../component/listtile";
 import Addstudent from "../../component/addstudent";
-import React from "react";
+import React, { useContext } from "react";
 import axios from 'axios';
 import { useState, useEffect } from "react";
+import { SigninContext } from "../../constants/signinContext";
 
 
 function List() {
+    const ademail = localStorage.getItem("ademail")
     const [allstudent, setallStudent] = useState([]);
     const [name, setname] = useState("");
     const [email, setemail] = useState("");
@@ -16,6 +18,9 @@ function List() {
     const [showModal, setShowModal] = React.useState(false);
     const [isUpdate, setisUpdate] = React.useState(false);
     const [val, setval] = React.useState(false);
+    const [updatevalue, setupdatevalue] = React.useState({
+        name: "", phone: "", enroll: "", admission: ""
+    });
 
 
     // const remove = () => {
@@ -30,7 +35,7 @@ function List() {
     const [updateuserid, setupdateuserid] = React.useState("");
 
     useEffect(() => {
-        axios.get('user/getuser')
+        axios.get('user/' + ademail)
             .then(response => {
                 setallStudent(response.data);
             })
@@ -44,10 +49,12 @@ function List() {
             "name": name,
             "phone": phone,
             "enroll": enroll,
+            "createdby": ademail,
             "admission": admission
 
         }).then(() => {
             setShowModal(false)
+            setisUpdate(false)
             setval(!val)
             setname("")
             setemail("")
@@ -75,22 +82,24 @@ function List() {
     }
     const createStudent = () => {
         axios.post('user/create', {
-            "userId": email,
+            "userid": email,
             "name": name,
             "email": email,
             "phone": phone,
             "enroll": enroll,
+            "createdby": ademail,
             "admission": admission
 
         }).then(() => {
 
             if (name !== "") {
                 setallStudent([...allstudent, {
-                    "userId": email,
+                    "userid": email,
                     "name": name,
                     "phone": phone,
                     "email": email,
                     "enroll": enroll,
+                    "createdby": ademail,
                     "admission": admission
                 }])
             }
@@ -141,14 +150,16 @@ function List() {
                             </thead>
                             {allstudent.map((student) => {
                                 return (
-                                    <Listtile val={val} setval={setval} create={setallStudent} onupdate={setShowModal} name={student.name} email={student.email} phone={student.phone} enroll={student.enroll} admission={student.admission} userid={student.userid} isUpdate={setisUpdate} updateuser={setupdateuserid} />
+                                    <Listtile setupdateval={setupdatevalue} val={val} setval={setval} create={setallStudent} onupdate={setShowModal} name={student.name} email={student.email} phone={student.phone} enroll={student.enroll} admission={student.admission} userid={student.userid} isUpdate={setisUpdate} updateuser={setupdateuserid} />
 
                                 );
                             })}
 
                         </table></div></div>
             </div>
-            {showModal ? <Addstudent updateuserid={isUpdate ? updateuserid : ""} name={name} email={email} admission={admission} phone={phone} setadmission={setadmission} setemail={setemail} setphone={setphone} setenroll={setenroll} setname={setname} functioncall={isUpdate ? updateStudent : createStudent} setShowModal={setShowModal} create={setallStudent} allstudent={allstudent} isUpdate={isUpdate} userid={isUpdate ? updateuserid : null} /> : null}
+            {showModal ? <Addstudent
+                setisUpdate={
+                    setisUpdate} upval={updatevalue} updateuserid={isUpdate ? updateuserid : ""} name={name} email={email} admission={admission} phone={phone} setadmission={setadmission} setemail={setemail} setphone={setphone} setenroll={setenroll} setname={setname} functioncall={isUpdate ? updateStudent : createStudent} setShowModal={setShowModal} create={setallStudent} allstudent={allstudent} isUpdate={isUpdate} userid={isUpdate ? updateuserid : null} /> : null}
         </body>
     );
 }

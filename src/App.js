@@ -33,11 +33,12 @@ import { SigninContext } from './constants/signinContext';
 function App() {
   const [apptoken, setapptoken] = useState("")
   const [refresh, setrefresh] = useState("")
+  const [ademail, setademail] = useState("")
   // const apptkn = useMemo(apptoken, [apptoken])
   // <RouterProvider router={router} />
   return (
     <SigninContext.Provider
-      value={{ setapptoken, apptoken, setrefresh, refresh }}
+      value={{ setapptoken, apptoken, setrefresh, refresh, ademail }}
     >
       <BrowserRouter>
         <Routes >

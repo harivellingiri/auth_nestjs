@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 
-function Listtile({ name, email, phone, enroll, admission, setval, val, onupdate, userid, isUpdate, updateuser, create }) {
+function Listtile({ name, email, phone, enroll, admission, setval, val, onupdate, setupdateval, userid, isUpdate, updateuser, create }) {
 
     const deletestudent = () => {
         axios.delete("user/" + email).then(setval(!val))
@@ -51,6 +51,11 @@ function Listtile({ name, email, phone, enroll, admission, setval, val, onupdate
                             </a>
                         </div>
                         <div onClick={() => {
+                            setupdateval({
+                                "name": name,
+                                "phone": phone,
+                                "enroll": enroll, "admission": admission
+                            })
                             updateuser(email)
                             isUpdate(true)
                             onupdate(true)

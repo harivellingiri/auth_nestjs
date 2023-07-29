@@ -17,6 +17,7 @@ function Signin() {
                 setapptoken(res.data.accessToken)
                 setrefresh(res.data.refreshToken)
                 localStorage.setItem('token', res.data.accessToken);
+                localStorage.setItem("ademail", email)
                 navigate('/home')
 
             }
@@ -30,7 +31,7 @@ function Signin() {
     function validateForm() {
 
         const emailval = RegExp(
-            "[a-z0-9]+@[a-z]+.[a-z]{2,3}"
+            "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$"
         );
         const passval = RegExp("^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$");
         function validate(text, pattern) {
